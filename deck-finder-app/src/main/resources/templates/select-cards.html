@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Cards</title>
+</head>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:extends="layout">
+
+<head>
+    <title>Select Cards</title>
+</head>
+
+<body>
+
+<h2>Select Cards</h2>
+
+<form method="post" action="/select-cards">
+    <ul>
+        <li th:each="card : ${availableCards}">
+            <label th:text="${card.name}">
+                <input type="checkbox" name="warDeck.cards" th:value="${card}" th:checked="${warDeck.cards.contains(card)}"/>
+            </label>
+        </li>
+    </ul>
+
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+
+</html>
+
