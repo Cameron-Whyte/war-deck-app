@@ -35,8 +35,7 @@ public class WarDeckController {
     @PostMapping("/select-cards")
     public String submitCardSelectionForm(@ModelAttribute WarDeck warDeck, Model model) {
         // Implement logic to process the selected cards and update the war deck
-        // For now, let's assume you have a service method for adding cards to the war deck
-        // You can replace this with your actual logic
+
 
         // Example:
         // warDeckService.addCard(c); // c being the card in question
