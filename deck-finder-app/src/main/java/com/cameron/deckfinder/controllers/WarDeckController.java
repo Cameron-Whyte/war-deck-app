@@ -4,12 +4,13 @@ import com.cameron.deckfinder.models.Card;
 import com.cameron.deckfinder.models.WarDeck;
 import com.cameron.deckfinder.services.ClashRoyaleAPIService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class WarDeckController {
 
     private final ClashRoyaleAPIService clashRoyaleAPIService;
@@ -22,7 +23,8 @@ public class WarDeckController {
     // Endpoint to display the card selection form
     @GetMapping("/select-cards")
     public String showCardSelectionForm(Model model) {
-        Card availableCards = clashRoyaleAPIService.getCardData();
+        List<Card> availableCards = clashRoyaleAPIService.getCardData();
+        System.out.println("Available Cards: " + availableCards);
         model.addAttribute("availableCards", availableCards);
         model.addAttribute("warDeck", new WarDeck());
 
