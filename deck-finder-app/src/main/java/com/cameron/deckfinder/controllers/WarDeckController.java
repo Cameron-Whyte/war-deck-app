@@ -24,14 +24,12 @@ public class WarDeckController {
     @GetMapping("/select-cards")
     public String showCardSelectionForm(Model model) {
         List<Card> availableCards = clashRoyaleAPIService.getCardData();
-        System.out.println("Available Cards: " + availableCards);
+        System.out.println("Available Cards: " + availableCards.size());
         model.addAttribute("availableCards", availableCards);
         model.addAttribute("warDeck", new WarDeck());
 
         return "select-cards";
     }
-
-
 
     // Endpoint to handle the form submission
     @PostMapping("/select-cards")

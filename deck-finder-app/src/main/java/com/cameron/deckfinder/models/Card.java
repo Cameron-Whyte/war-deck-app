@@ -9,7 +9,8 @@ public class Card {
     private int maxLevel;
     private int maxEvolutionLevel;
     private int elixirCost;
-    private Rarity rarity;
+    @JsonProperty("rarity")
+    private String rarity;
     private IconUrls iconUrls;
 
     // Constructors
@@ -17,7 +18,7 @@ public class Card {
         // Default constructor
     }
 
-    public Card(String name, int id, int maxLevel, int maxEvolutionLevel, int elixirCost, Rarity rarity, IconUrls iconUrls) {
+    public Card(String name, int id, int maxLevel, int maxEvolutionLevel, int elixirCost, String rarity, IconUrls iconUrls) {
         this.name = name;
         this.id = id;
         this.maxLevel = maxLevel;
@@ -74,11 +75,11 @@ public class Card {
     }
 
     @JsonProperty("rarity")
-    public Rarity getRarity() {
+    public String getRarity() {
         return rarity;
     }
 
-    public void setRarity(Rarity rarity) {
+    public void setRarity(String rarity) {
         this.rarity = rarity;
     }
 
