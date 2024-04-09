@@ -82,6 +82,7 @@ public class Card {
         this.rarity = rarity;
     }
 
+    // Getter and setter for IconUrls
     @JsonProperty("iconUrls")
     public IconUrls getIconUrls() {
         return iconUrls;
@@ -95,6 +96,16 @@ public class Card {
     public static class Rarity {
         private String name;
 
+        // Default constructor
+        public Rarity() {
+        }
+
+        // Constructor with String argument
+        public Rarity(String name) {
+            this.name = name;
+        }
+
+        // Getter and setter for name
         @JsonProperty("name")
         public String getName() {
             return name;
@@ -102,29 +113,6 @@ public class Card {
 
         public void setName(String name) {
             this.name = name;
-        }
-    }
-
-    public static class IconUrls {
-        private String medium;
-        private String evolutionMedium;
-
-        @JsonProperty("medium")
-        public String getMedium() {
-            return medium;
-        }
-
-        public void setMedium(String medium) {
-            this.medium = medium;
-        }
-
-        @JsonProperty("evolutionMedium")
-        public String getEvolutionMedium() {
-            return evolutionMedium;
-        }
-
-        public void setEvolutionMedium(String evolutionMedium) {
-            this.evolutionMedium = evolutionMedium;
         }
     }
 
@@ -140,8 +128,8 @@ public class Card {
                 ", iconUrls=" + iconUrls +
                 '}';
     }
-
 }
+
 
 
 
