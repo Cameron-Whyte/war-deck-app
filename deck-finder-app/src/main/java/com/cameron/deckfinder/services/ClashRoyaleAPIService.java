@@ -64,6 +64,9 @@ public class ClashRoyaleAPIService {
             System.err.println("Exception while retrieving card data: " + e.getMessage());
             return Collections.emptyList(); // Return an empty list to indicate failure
         }
+        /*
+            better error handling needed - empty list isn't helpful to a user
+         */
     }
 }
 

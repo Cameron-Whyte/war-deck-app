@@ -6,27 +6,21 @@ import java.util.List;
 import java.util.Set;
 
 public class WarDeck {
-    private static final int TOTAL_CARDS_LIMIT = 32; // Total number of unique cards across all war decks
-    private static final int DECK_LIMIT = 8; // A deck cannot have more than 8 cards
-    private final List<Card> cards;
-    private static final Set<String> uniqueCardNames = new HashSet<>();
+    public static final int DECK_LIMIT = 8; // A deck cannot have more than 8 cards
+    private final List<Card> cards = new ArrayList<>();
+    private final Set<String> uniqueCardNames = new HashSet<>(); // this was static but that would've caused persistence issues
 
-    // Constructor
-    public WarDeck() {
-        this.cards = new ArrayList<>();
-    }
-
-    // Method to add a card to the war deck
-    public void addCard(Card card) {
-        if (cards.size() < DECK_LIMIT && uniqueCardNames.size() < TOTAL_CARDS_LIMIT && !uniqueCardNames.contains(card.getName())) {
+    // add a card to the war deck according to constraints
+    public boolean addCard(Card card) {
+        if (cards.size() < DECK_LIMIT && !uniqueCardNames.contains(card.getName())) {
             cards.add(card);
             uniqueCardNames.add(card.getName());
-        } else {
-            System.out.println("Cannot add more cards. War deck is full or the card is not unique.");
+            return true; // Successfully added
         }
+        return false; // Not added due to constraints
     }
 
-    // Method to get the cards in the war deck
+    // get the cards in the war deck
     public List<Card> getCards() {
         return cards;
     }
@@ -39,6 +33,7 @@ public class WarDeck {
                 '}';
     }
 }
+
 
 
 

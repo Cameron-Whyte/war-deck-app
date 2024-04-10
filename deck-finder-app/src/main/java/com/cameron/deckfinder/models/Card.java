@@ -13,11 +13,6 @@ public class Card {
     private String rarity;
     private IconUrls iconUrls;
 
-    // Constructors
-    public Card() {
-        // Default constructor
-    }
-
     public Card(String name, int id, int maxLevel, int maxEvolutionLevel, int elixirCost, String rarity, IconUrls iconUrls) {
         this.name = name;
         this.id = id;
@@ -91,30 +86,6 @@ public class Card {
 
     public void setIconUrls(IconUrls iconUrls) {
         this.iconUrls = iconUrls;
-    }
-
-    // Inner classes
-    public static class Rarity {
-        private String name;
-
-        // Default constructor
-        public Rarity() {
-        }
-
-        // Constructor with String argument
-        public Rarity(String name) {
-            this.name = name;
-        }
-
-        // Getter and setter for name
-        @JsonProperty("name")
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
     }
 
     @Override

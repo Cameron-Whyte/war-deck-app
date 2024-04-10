@@ -3,26 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Select Cards</title>
+    <style>
+         .cards-container {
+             display: flex;
+             flex-wrap: wrap;
+             justify-content: start;
+         }
+
+         .card {
+             display: inline-flex;
+             flex-direction: column;
+             align-items: center;
+             margin: 10px;
+             width: calc(100% / 11 - 20px); /* Adjust based on the number of items per row and margin */
+             cursor: pointer;
+         }
+
+         .card input[type=checkbox] {
+             display: none; /* Hide the checkbox */
+         }
+
+         .card img {
+             width: 90px; /* Adjust based on your needs */
+             height: auto;
+             border: 2px solid transparent; /* Optional: adds a border */
+         }
+
+         .card input[type=checkbox]:checked + img {
+             border-color: blue; /* Highlight selected cards */
+         }
+
+    </style>
 </head>
 <body>
 
-<h2>Select Cards</h2>
+<h1>Choose your cards!</h1>
+<h3>For the best decks these should be your highest levelled cards or those you are best with.</h3>
 
-<form method="post" action="/select-cards">
-    <ul>
-        <li th:each="card : ${availableCards}">
-            <label th:text="${card.name}">
-                <img th:src="${card.iconUrls.medium}" alt="Card Image"/>
-                <input type="checkbox" name="warDeck.cards" th:value="${card}" th:checked="${warDeck.cards.contains(card)}"/>
+
+<form method="post" action="/selected-cards">
+    <div class="cards-container">
+        <div th:each="card : ${availableCards}" class="card">
+            <label>
+                <input type="checkbox" th:name="'selectedCardIds'" th:value="${card.id}" />
+                <img th:src="${card.iconUrls.medium}" th:alt="${card.name}" />
+                <span th:text="${card.name}"></span>
             </label>
-        </li>
-    </ul>
-
+        </div>
+    </div>
     <button type="submit">Submit</button>
 </form>
 
 </body>
 </html>
+
 
 
 

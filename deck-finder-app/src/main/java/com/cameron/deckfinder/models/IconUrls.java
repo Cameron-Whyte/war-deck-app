@@ -6,6 +6,12 @@ public class IconUrls {
     private String medium;
     private String evolutionMedium;
 
+    // constructor was added for testing in memory storing of cards for /selected-cards endpoint but may not needed
+    public IconUrls(){
+        this.medium = getMedium();
+        this.evolutionMedium = getEvolutionMedium();
+    }
+
     @JsonProperty("medium")
     public String getMedium() {
         return medium;

@@ -1,20 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:extends="layout">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Selected Cards</title>
-</head>
+  <meta charset="UTF-8">
+  <title>War Decks</title>
+  <style>
+    .deck-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    }
 
+    .card-details {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
+        width: calc(100% / 4 - 20px); /* Adjust for 4 items per row and margin */
+    }
+
+    .card-details img {
+        width: 90px; /* Adjust based on your needs */
+        height: auto;
+        margin-bottom: 5px;
+    }
+  </style>
+</head>
 <body>
 
-<h2>Selected Cards</h2>
+<h2>Generated War Decks</h2>
 
-<ul>
-  <li th:each="card : ${warDeck.cards}">
-    <span th:text="${card.name}"></span>
-  </li>
-</ul>
+<div th:each="warDeck, deckStat : ${warDecks}">
+  <h3 th:text="'Deck ' + ${deckStat.index + 1}"></h3>
+  <div class="deck-cards">
+    <div th:each="card : ${warDeck.cards}" class="card-details">
+      <img th:if="${card.iconUrls != null}" th:src="${card.iconUrls.medium}" alt="Card Image"/>
+      <span th:text="${card.name}"></span>
+      <!-- can put card details here -->
+    </div>
+  </div>
+</div>
+
 
 </body>
-
 </html>

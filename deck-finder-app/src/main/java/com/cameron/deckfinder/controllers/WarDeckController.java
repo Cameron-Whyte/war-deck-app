@@ -8,7 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class WarDeckController {
@@ -20,29 +21,62 @@ public class WarDeckController {
         this.clashRoyaleAPIService = clashRoyaleAPIService;
     }
 
-    // Endpoint to display the card selection form
     @GetMapping("/select-cards")
     public String showCardSelectionForm(Model model) {
         List<Card> availableCards = clashRoyaleAPIService.getCardData();
-        System.out.println("Available Cards: " + availableCards.size());
         model.addAttribute("availableCards", availableCards);
-        model.addAttribute("warDeck", new WarDeck());
-
         return "select-cards";
     }
 
-    // Endpoint to handle the form submission
-    @PostMapping("/select-cards")
-    public String submitCardSelectionForm(@ModelAttribute WarDeck warDeck, Model model) {
-        // Implement logic to process the selected cards and update the war deck
+    @PostMapping("/selected-cards")
+    public String handleSelectedCards(@RequestParam List<Integer> selectedCardIds, Model model) {
+        // fetch all available cards
+        List<Card> allAvailableCards = clashRoyaleAPIService.getCardData();
 
+        // convert selectedCardIds to Card objects
+        List<Card> selectedCards = allAvailableCards.stream()
+                .filter(card -> selectedCardIds.contains(card.getId()))
+                .collect(Collectors.toList());
 
-        // Example:
-        // warDeckService.addCard(c); // c being the card in question
+        // remove selected cards from the pool of available cards to avoid re-adding them
+        allAvailableCards.removeAll(selectedCards);
 
-        model.addAttribute("warDeck", warDeck);
+        // prep 4 war decks
+        List<WarDeck> warDecks = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            warDecks.add(new WarDeck());
+        }
 
-        return "selected-cards"; // Thymeleaf template name
+        // randomly distribute selected cards across the four decks
+        Collections.shuffle(selectedCards);
+        for (Card card : selectedCards) {
+            boolean added = false;
+            Collections.shuffle(warDecks); // shuffle warDecks to randomize distribution
+            for (WarDeck warDeck : warDecks) {
+                if (warDeck.addCard(card)) {
+                    added = true;
+                    break;
+                }
+            }
+            if (!added) {
+                System.out.println("Failed to add selected card to any deck (due to uniqueness constraint): " + card.getName());
+                // need better error handling here
+            }
+        }
+
+        // the logic below will change once rules are applied on war decks and cards are put into groups
+
+        // pad out the decks with additional cards to ensure each has exactly 8 cards
+        Collections.shuffle(allAvailableCards); // shuffle to randomize padding cards
+        for (WarDeck warDeck : warDecks) {
+            while (warDeck.getCards().size() < WarDeck.DECK_LIMIT && !allAvailableCards.isEmpty()) {
+                Card cardToAdd = allAvailableCards.remove(0); // Take the first card
+                warDeck.addCard(cardToAdd); // No need to check if added since all cards are now unique
+            }
+        }
+
+        model.addAttribute("warDecks", warDecks); // add war decks to model
+        return "selected-cards";
     }
-}
 
+}
