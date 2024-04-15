@@ -30,7 +30,7 @@ public class WarDeckController {
 
     @PostMapping("/selected-cards")
     public String handleSelectedCards(@RequestParam List<Integer> selectedCardIds, Model model) {
-        // fetch all available cards
+        // fetch all available cards - inefficient as API call needed each time user submits, db storing should fix tho so fine for now
         List<Card> allAvailableCards = clashRoyaleAPIService.getCardData();
 
         // convert selectedCardIds to Card objects

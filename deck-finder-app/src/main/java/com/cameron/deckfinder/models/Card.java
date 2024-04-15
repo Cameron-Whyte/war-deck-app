@@ -1,17 +1,25 @@
 package com.cameron.deckfinder.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 
-
+@Entity
 public class Card {
-    private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String name;
     private int maxLevel;
     private int maxEvolutionLevel;
     private int elixirCost;
     @JsonProperty("rarity")
     private String rarity;
+    @Embedded
     private IconUrls iconUrls;
+
+    public Card(){
+        // constructor without fields necessary for JPA
+    }
 
     public Card(String name, int id, int maxLevel, int maxEvolutionLevel, int elixirCost, String rarity, IconUrls iconUrls) {
         this.name = name;
@@ -24,7 +32,6 @@ public class Card {
     }
 
     // Getters and setters
-    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -33,7 +40,6 @@ public class Card {
         this.name = name;
     }
 
-    @JsonProperty("id")
     public int getId() {
         return id;
     }
@@ -42,7 +48,6 @@ public class Card {
         this.id = id;
     }
 
-    @JsonProperty("maxLevel")
     public int getMaxLevel() {
         return maxLevel;
     }
@@ -51,7 +56,6 @@ public class Card {
         this.maxLevel = maxLevel;
     }
 
-    @JsonProperty("maxEvolutionLevel")
     public int getMaxEvolutionLevel() {
         return maxEvolutionLevel;
     }
@@ -60,7 +64,6 @@ public class Card {
         this.maxEvolutionLevel = maxEvolutionLevel;
     }
 
-    @JsonProperty("elixirCost")
     public int getElixirCost() {
         return elixirCost;
     }
@@ -69,7 +72,6 @@ public class Card {
         this.elixirCost = elixirCost;
     }
 
-    @JsonProperty("rarity")
     public String getRarity() {
         return rarity;
     }
@@ -78,8 +80,6 @@ public class Card {
         this.rarity = rarity;
     }
 
-    // Getter and setter for IconUrls
-    @JsonProperty("iconUrls")
     public IconUrls getIconUrls() {
         return iconUrls;
     }
