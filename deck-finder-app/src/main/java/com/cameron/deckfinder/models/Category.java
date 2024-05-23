@@ -8,15 +8,16 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, unique = true)
     private String name;
 
     @ManyToMany
     @JoinTable(
-            name = "card_categories",
+            name = "card_category",
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "card_id")
     )
-
     private Set<Card> cards;
 
     public Category(){

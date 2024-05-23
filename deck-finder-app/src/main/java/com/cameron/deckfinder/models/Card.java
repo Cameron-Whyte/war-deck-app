@@ -3,29 +3,30 @@ package com.cameron.deckfinder.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
-    private int maxLevel;
-    private int maxEvolutionLevel;
     private int elixirCost;
     @JsonProperty("rarity")
     private String rarity;
     @Embedded
     private IconUrls iconUrls;
 
+    @ManyToMany(mappedBy = "cards")
+    private Set<Category> categories;
+
     public Card(){
         // constructor without fields necessary for JPA
     }
 
-    public Card(String name, int id, int maxLevel, int maxEvolutionLevel, int elixirCost, String rarity, IconUrls iconUrls) {
+    public Card(String name, Long id, int elixirCost, String rarity, IconUrls iconUrls) {
         this.name = name;
         this.id = id;
-        this.maxLevel = maxLevel;
-        this.maxEvolutionLevel = maxEvolutionLevel;
         this.elixirCost = elixirCost;
         this.rarity = rarity;
         this.iconUrls = iconUrls;
@@ -40,28 +41,12 @@ public class Card {
         this.name = name;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public int getMaxLevel() {
-        return maxLevel;
-    }
-
-    public void setMaxLevel(int maxLevel) {
-        this.maxLevel = maxLevel;
-    }
-
-    public int getMaxEvolutionLevel() {
-        return maxEvolutionLevel;
-    }
-
-    public void setMaxEvolutionLevel(int maxEvolutionLevel) {
-        this.maxEvolutionLevel = maxEvolutionLevel;
     }
 
     public int getElixirCost() {
@@ -88,18 +73,9 @@ public class Card {
         this.iconUrls = iconUrls;
     }
 
-    @Override
-    public String toString() {
-        return "Card{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                ", maxLevel=" + maxLevel +
-                ", maxEvolutionLevel=" + maxEvolutionLevel +
-                ", elixirCost=" + elixirCost +
-                ", rarity=" + rarity +
-                ", iconUrls=" + iconUrls +
-                '}';
-    }
+    public Set<Category> getCategories() { return categories; }
+
+    public void setCategories(Set<Category> categories) { this.categories = categories; }
 }
 
 

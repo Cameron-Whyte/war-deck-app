@@ -1,0 +1,126 @@
+package com.cameron.deckfinder.models;
+
+import java.util.*;
+
+public class CategoryMapping {
+    private static final Map<String, Set<String>> cardCategoryMap = new HashMap<>();
+
+    static {
+        // map with card names and corresponding category sets
+        cardCategoryMap.put("Fireball", new HashSet<>(Arrays.asList("Spell", "Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Arrows", new HashSet<>(Arrays.asList("Spell", "Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Rage", new HashSet<>(Arrays.asList("Spell", "Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Rocket", new HashSet<>(Arrays.asList("Spell", "Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Goblin Barrel", new HashSet<>(Arrays.asList("Spell", "Win Condition", "Ground Attack")));
+        cardCategoryMap.put("Freeze", new HashSet<>(Arrays.asList("Spell")));
+        cardCategoryMap.put("Mirror", new HashSet<>(Arrays.asList("Spell")));
+        cardCategoryMap.put("Lightning", new HashSet<>(Arrays.asList("Spell", "Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Zap", new HashSet<>(Arrays.asList("Spell", "Cycle", "Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Poison", new HashSet<>(Arrays.asList("Spell", "Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Graveyard", new HashSet<>(Arrays.asList("Spell", "Win Condition", "Ground Attack")));
+        cardCategoryMap.put("The Log", new HashSet<>(Arrays.asList("Spell", "Cycle", "Ground Attack")));
+        cardCategoryMap.put("Tornado", new HashSet<>(Arrays.asList("Spell", "Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Clone", new HashSet<>(Arrays.asList("Spell")));
+        cardCategoryMap.put("Earthquake", new HashSet<>(Arrays.asList("Spell", "Ground Attack")));
+        cardCategoryMap.put("Barbarian Barrel", new HashSet<>(Arrays.asList("Spell", "Cycle", "Ground Attack")));
+        cardCategoryMap.put("Heal Spirit", new HashSet<>(Arrays.asList("Spell", "Cycle")));
+        cardCategoryMap.put("Giant Snowball", new HashSet<>(Arrays.asList("Spell", "Cycle", "Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Royal Delivery", new HashSet<>(Arrays.asList("Spell", "Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Mighty Miner", new HashSet<>(Arrays.asList("Hero", "Tank", "Ground Attack", "Air Attack")));
+        cardCategoryMap.put("Skeleton King", new HashSet<>(Arrays.asList("Hero", "Tank", "Ground Attack")));
+        cardCategoryMap.put("Archer Queen", new HashSet<>(Arrays.asList("Hero", "Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Monk", new HashSet<>(Arrays.asList("Hero", "Tank", "Ground Attack", "Air Attack")));
+        cardCategoryMap.put("Golden Knight", new HashSet<>(Arrays.asList("Hero", "Tank", "Ground Attack")));
+        cardCategoryMap.put("Little Prince", new HashSet<>(Arrays.asList("Hero", "Tank", "Air Attack", "Ground Attack")));
+        cardCategoryMap.put("X-Bow", new HashSet<>(Arrays.asList("Building", "Ground Attack", "Win Condition")));
+        cardCategoryMap.put("Goblin Drill", new HashSet<>(Arrays.asList("Building", "Ground Attack", "Win Condition")));
+        cardCategoryMap.put("Barbarian Hut", new HashSet<>(Arrays.asList("Building", "Ground Attack")));
+        cardCategoryMap.put("Elixir Collector", new HashSet<>(Arrays.asList("Building")));
+        cardCategoryMap.put("Goblin Hut", new HashSet<>(Arrays.asList("Building", "Ground Attack", "Air Attack")));
+        cardCategoryMap.put("Inferno Tower", new HashSet<>(Arrays.asList("Building", "Ground Attack", "Air Attack")));
+        cardCategoryMap.put("Bomb Tower", new HashSet<>(Arrays.asList("Building", "Ground Attack")));
+        cardCategoryMap.put("Furnace", new HashSet<>(Arrays.asList("Building", "Ground Attack", "Air Attack")));
+        cardCategoryMap.put("Goblin Cage", new HashSet<>(Arrays.asList("Building", "Ground Attack")));
+        cardCategoryMap.put("Tombstone", new HashSet<>(Arrays.asList("Building", "Ground Attack")));
+        cardCategoryMap.put("Mortar", new HashSet<>(Arrays.asList("Building", "Ground Attack", "Win Condition")));
+        cardCategoryMap.put("Tesla", new HashSet<>(Arrays.asList("Building", "Ground Attack", "Air Attack")));
+        cardCategoryMap.put("Cannon", new HashSet<>(Arrays.asList("Building", "Ground Attack")));
+        cardCategoryMap.put("Lava Hound", new HashSet<>(Arrays.asList("Tank")));
+        cardCategoryMap.put("Mega Knight", new HashSet<>(Arrays.asList("Tank", "Ground Attack")));
+        cardCategoryMap.put("Sparky", new HashSet<>(Arrays.asList("Ground Attack", "Win Condition")));
+        cardCategoryMap.put("Ram Rider", new HashSet<>(Arrays.asList("Ground Attack", "Air Attack", "Win Condition")));
+        cardCategoryMap.put("Lumberjack", new HashSet<>(Arrays.asList("Ground Attack")));
+        cardCategoryMap.put("Inferno Dragon", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Electro Wizard", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Night Witch", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Magic Archer", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Mother Witch", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Phoenix", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Ice Wizard", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Princess", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Miner", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack", "Win Condition")));
+        cardCategoryMap.put("Bandit", new HashSet<>(Arrays.asList("Ground Attack")));
+        cardCategoryMap.put("Royal Ghost", new HashSet<>(Arrays.asList("Ground Attack")));
+        cardCategoryMap.put("Fisherman", new HashSet<>(Arrays.asList("Ground Attack")));
+        cardCategoryMap.put("Golem", new HashSet<>(Arrays.asList("Tank")));
+        cardCategoryMap.put("P.E.K.K.A", new HashSet<>(Arrays.asList("Tank", "Ground Attack")));
+        cardCategoryMap.put("Electro Giant", new HashSet<>(Arrays.asList("Tank", "Win Condition")));
+        cardCategoryMap.put("Giant Skeleton", new HashSet<>(Arrays.asList("Tank", "Ground Attack")));
+        cardCategoryMap.put("Goblin Giant", new HashSet<>(Arrays.asList("Tank", "Air Attack", "Ground Attack", "Win Condition")));
+        cardCategoryMap.put("Balloon", new HashSet<>(Arrays.asList("Win Condition")));
+        cardCategoryMap.put("Witch", new HashSet<>(Arrays.asList("Ground Attack", "Air Attack")));
+        cardCategoryMap.put("Prince", new HashSet<>(Arrays.asList("Tank", "Ground Attack")));
+        cardCategoryMap.put("Bowler", new HashSet<>(Arrays.asList("Tank", "Ground Attack")));
+        cardCategoryMap.put("Executioner", new HashSet<>(Arrays.asList("Ground Attack", "Air Attack")));
+        cardCategoryMap.put("Cannon Cart", new HashSet<>(Arrays.asList("Tank", "Ground Attack", "Building")));
+        cardCategoryMap.put("Electro Dragon", new HashSet<>(Arrays.asList("Ground Attack", "Air Attack")));
+        cardCategoryMap.put("Baby Dragon", new HashSet<>(Arrays.asList("Ground Attack", "Air Attack")));
+        cardCategoryMap.put("Dark Prince", new HashSet<>(Arrays.asList("Tank", "Ground Attack")));
+        cardCategoryMap.put("Hunter", new HashSet<>(Arrays.asList("Ground Attack", "Air Attack")));
+        cardCategoryMap.put("Skeleton Army", new HashSet<>(Arrays.asList("Ground Attack")));
+        cardCategoryMap.put("Guards", new HashSet<>(Arrays.asList("Ground Attack")));
+        cardCategoryMap.put("Wall Breakers", new HashSet<>(Arrays.asList("Win Condition", "Cycle")));
+        cardCategoryMap.put("Three Musketeers", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack", "Win Condition")));
+        cardCategoryMap.put("Giant", new HashSet<>(Arrays.asList("Tank")));
+        cardCategoryMap.put("Wizard", new HashSet<>(Arrays.asList("Ground Attack", "Air Attack")));
+        cardCategoryMap.put("Royal Hogs", new HashSet<>(Arrays.asList("Win Condition")));
+        cardCategoryMap.put("Valkyrie", new HashSet<>(Arrays.asList("Tank", "Ground Attack")));
+        cardCategoryMap.put("Musketeer", new HashSet<>(Arrays.asList("Ground Attack", "Air Attack")));
+        cardCategoryMap.put("Mini P.E.K.K.A", new HashSet<>(Arrays.asList("Ground Attack")));
+        cardCategoryMap.put("Hog Rider", new HashSet<>(Arrays.asList("Win Condition")));
+        cardCategoryMap.put("Battle Ram", new HashSet<>(Arrays.asList("Win Condition")));
+        cardCategoryMap.put("Zappies", new HashSet<>(Arrays.asList("Ground Attack", "Air Attack")));
+        cardCategoryMap.put("Flying Machine", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Battle Healer", new HashSet<>(Arrays.asList("Ground Attack")));
+        cardCategoryMap.put("Mega Minion", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Dart Goblin", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Elixir Golem", new HashSet<>(Arrays.asList("Tank", "Win Condition")));
+        cardCategoryMap.put("Ice Golem", new HashSet<>(Arrays.asList("Tank", "Cycle")));
+        cardCategoryMap.put("Royal Recruits", new HashSet<>(Arrays.asList("Tank", "Win Condition", "Ground Attack")));
+        cardCategoryMap.put("Royal Giant", new HashSet<>(Arrays.asList("Tank", "Win Condition")));
+        cardCategoryMap.put("Elite Barbarians", new HashSet<>(Arrays.asList("Ground Attack")));
+        cardCategoryMap.put("Barbarians", new HashSet<>(Arrays.asList("Ground Attack")));
+        cardCategoryMap.put("Minion Horde", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Rascals", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Skeleton Dragons", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Knight", new HashSet<>(Arrays.asList("Tank", "Ground Attack")));
+        cardCategoryMap.put("Archers", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Minions", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Goblin Gang", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Skeleton Barrel", new HashSet<>(Arrays.asList("Win Condition")));
+        cardCategoryMap.put("Firecracker", new HashSet<>(Arrays.asList("Air Attack", "Ground Attack")));
+        cardCategoryMap.put("Goblins", new HashSet<>(Arrays.asList("Cycle", "Ground Attack")));
+        cardCategoryMap.put("Bomber", new HashSet<>(Arrays.asList("Cycle", "Ground Attack")));
+        cardCategoryMap.put("Spear Goblins", new HashSet<>(Arrays.asList("Cycle", "Ground Attack", "Air Attack")));
+        cardCategoryMap.put("Bats", new HashSet<>(Arrays.asList("Cycle", "Ground Attack", "Air Attack")));
+        cardCategoryMap.put("Skeletons", new HashSet<>(Arrays.asList("Cycle", "Ground Attack")));
+        cardCategoryMap.put("Ice Spirit", new HashSet<>(Arrays.asList("Cycle", "Spell")));
+        cardCategoryMap.put("Fire Spirit", new HashSet<>(Arrays.asList("Cycle", "Spell")));
+        cardCategoryMap.put("Electro Spirit", new HashSet<>(Arrays.asList("Cycle", "Spell")));
+        cardCategoryMap.put("Void", new HashSet<>(Arrays.asList("Spell", "Air Attack", "Ground Attack")));
+    }
+
+    public static Set<String> getCategories(String cardName) {
+        return cardCategoryMap.getOrDefault(cardName, new HashSet<>());
+    }
+}
